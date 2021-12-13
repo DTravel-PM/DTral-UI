@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { Button, Row, Col, Container } from "react-bootstrap";
 import { OnlyHeaderLayout } from "../layout";
 import { Header } from "../components/common";
-import { CardPost, Sidebar } from "../components";
+import { CardPost, Sidebar, Hashtag } from "../components";
 
 interface IPosts {
   data?: any;
@@ -13,7 +13,7 @@ const Home: NextPage = ({ children, data }: IPosts) => {
   return (
     <OnlyHeaderLayout header={<Header />}>
       <Container>
-        <h3 className='mb-4'>Newsfeeds</h3>
+        <h3 className="mb-4">Newsfeeds</h3>
         <Row>
           <Col md={3}>
             <Sidebar />
@@ -26,7 +26,7 @@ const Home: NextPage = ({ children, data }: IPosts) => {
             <CardPost />
           </Col>
           <Col md={3}>
-            <span></span>
+            <Hashtag />
           </Col>
         </Row>
       </Container>

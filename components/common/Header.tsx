@@ -8,9 +8,27 @@ import {
   Button,
   FormControl,
 } from "react-bootstrap";
+import Router from "next/router";
+import { BsBookmarkHeart } from "react-icons/bs";
+import { FcPlanner } from "react-icons/fc";
+import styles from "../../styles/Layout.module.css";
 import Link from "next/link";
 
 export const Header = () => {
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    const search = e.target.search;
+
+    if (search && search.value) {
+      Router.push(`/search?text=${search.value}`);
+    }
+  };
+
+  const handleLogout = () => {
+    console.log("haha");
+  };
+
   return (
     <div
       style={{
@@ -22,47 +40,69 @@ export const Header = () => {
     >
       <Navbar bg="light" expand="lg">
         <Container fluid="lg">
-          <Navbar.Brand href="#">DTravel</Navbar.Brand>
+          <Navbar.Brand
+            href="/"
+            style={{
+              marginRight: "30px",
+            }}
+            className={styles.nameApp}
+          >
+            DTravel
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
-            <Nav
-              className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px" }}
-              navbarScroll
-            >
-              <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="#action2">Link</Nav.Link>
-              <NavDropdown title="Link" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">
-                  Something else here
-                </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="#" disabled>
-                Link
-              </Nav.Link>
-            </Nav>
-            <Form className="d-flex">
+            <Form className="d-flex" onSubmit={handleSubmit}>
               <FormControl
                 type="search"
-                placeholder="Search"
+                placeholder="Nhập từ khóa tìm kiếm"
                 className="me-2"
                 aria-label="Search"
+                id="search"
+                name="search"
               />
-              <Button variant="outline-success" style={{ width: "100px" }}>
-                Search
+              <Button
+                variant="outline-success"
+                type="submit"
+                style={{ width: "140px" }}
+              >
+                Tìm kiếm
               </Button>
             </Form>
+            <Nav
+              className=" my-2 my-lg-0"
+              style={{ maxHeight: "100px", marginLeft: "auto" }}
+              navbarScroll
+            >
+              <Nav.Link href="/my-list" style={{ margin: "0px 8px" }}>
+                <BsBookmarkHeart size={22} color="red" />
+              </Nav.Link>
+              <Nav.Link href="/my-plan" style={{ margin: "0px 8px" }}>
+                <FcPlanner size={25} color="green" />
+              </Nav.Link>
+              <NavDropdown
+                style={{ margin: "0px 8px" }}
+                title="Đạt Nguyễn"
+                id="navbarScrollingDropdown"
+              >
+                <NavDropdown.Item href="/profile">
+                  Trang cá nhân
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/my-address">
+                  Địa điểm của tôi
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item onClick={handleLogout}>
+                  Đăng xuất
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+
             <Link href="/login">
               <Button
                 variant="danger"
-                style={{ marginLeft: "auto", width: "100px" }}
+                style={{ marginLeft: "20px", width: "120px" }}
               >
-                Login
+                Đăng nhập
               </Button>
             </Link>
           </Navbar.Collapse>

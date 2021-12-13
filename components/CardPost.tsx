@@ -1,6 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import { Popover, OverlayTrigger, Button, Modal } from "react-bootstrap";
+import styles from "../styles/Component.module.css";
 
 export const CardPost = () => {
+  const [show, setShow] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleClickItem = () => {
+    setShowOverlay(false);
+    handleShow();
+  };
+
+  const popover = (
+    <Popover
+      id="popover-basic"
+      style={{ display: showOverlay ? "block" : "none" }}
+    >
+      <Popover.Header as="h3">Tác vụ</Popover.Header>
+      <Popover.Body style={{ padding: 0 }}>
+        <div className={styles.cardOption} onClick={handleClickItem}>
+          <span>Báo cáo bài đăng</span>
+        </div>
+        <div className={styles.cardOption} onClick={handleClickItem}>
+          <span>Ẩn bài đăng</span>
+        </div>
+        <div className={styles.cardOption} onClick={handleClickItem}>
+          <span>Lưu bài đăng</span>
+        </div>
+      </Popover.Body>
+    </Popover>
+  );
+
   return (
     <div className="card gedf-card mb-5">
       <div className="card-header">
@@ -20,33 +53,28 @@ export const CardPost = () => {
             </div>
           </div>
           <div>
-            <div className="dropdown">
-              <button
-                className="btn btn-link dropdown-toggle"
-                type="button"
-                id="gedf-drop1"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i className="fa fa-ellipsis-h"></i>
-              </button>
+            <OverlayTrigger
+              trigger="click"
+              placement="bottom"
+              overlay={popover}
+              rootClose
+            >
               <div
-                className="dropdown-menu dropdown-menu-right"
-                aria-labelledby="gedf-drop1"
+                className="card-student__right"
+                onClick={() => setShowOverlay(true)}
               >
-                <div className="h6 dropdown-header">Configuration</div>
-                <a className="dropdown-item" href="#">
-                  Save
-                </a>
-                <a className="dropdown-item" href="#">
-                  Hide
-                </a>
-                <a className="dropdown-item" href="#">
-                  Report
-                </a>
+                <button
+                  className="btn btn-link dropdown-toggle"
+                  type="button"
+                  id="gedf-drop1"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i className="fa fa-ellipsis-h"></i>
+                </button>
               </div>
-            </div>
+            </OverlayTrigger>
           </div>
         </div>
       </div>
