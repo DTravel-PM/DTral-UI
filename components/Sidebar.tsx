@@ -2,9 +2,9 @@ import React from "react";
 
 export const Sidebar = () => {
   return (
-    <div className="card">
+    <div className="card" style={{ position: "sticky" }}>
       <div className="card-body">
-        <div className="h5">@LeeCross</div>
+        <div className="h5">LeeCross</div>
         <div className="h7 text-muted">Fullname : Miracles Lee Cross</div>
         <div className="h7">
           Developer of web applications, JavaScript, PHP, Java, Python, Ruby,
@@ -20,7 +20,6 @@ export const Sidebar = () => {
           <div className="h6 text-muted">Following</div>
           <div className="h5">6758</div>
         </li>
-        <li className="list-group-item">Vestibulum at eros</li>
       </ul>
     </div>
   );
