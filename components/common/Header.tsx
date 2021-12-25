@@ -87,6 +87,9 @@ export const Header = () => {
                 <NavDropdown.Item href="/profile">
                   Trang cá nhân
                 </NavDropdown.Item>
+                <NavDropdown.Item href="/edit-profile">
+                  Thông tin cá nhân
+                </NavDropdown.Item>
                 <NavDropdown.Item href="/my-address">
                   Địa điểm của tôi
                 </NavDropdown.Item>

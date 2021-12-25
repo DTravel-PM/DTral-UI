@@ -3,7 +3,9 @@ import { OnlyHeaderLayout } from "../layout";
 import { Header } from "../components/common";
 import Image from "next/image";
 import styles from "../styles/Profile.module.css";
-import "../styles/Profile.module.css";
+import { Sidebar } from "../components/Sidebar";
+import { CardPost } from "../components/CardPost";
+import { Hashtag } from "../components/Hashtag";
 
 const Profile = () => {
   return (
@@ -45,27 +47,23 @@ const Profile = () => {
                     </li>
                   </ul>
                 </div>
-                <div className={styles.block_menu}>
-                  <ul>
-                    <li>
-                      <a href="#">Timeline</a>
-                    </li>
-                    <li>
-                      <a href="#">about</a>
-                    </li>
-                    <li>
-                      <a href="#">Friends</a>
-                    </li>
-                    <li>
-                      <a href="#">Photos</a>
-                    </li>
-                    <li>
-                      <a href="#">More...</a>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </div>
+          </Col>
+        </Row>
+        <Row className="mt-3">
+          <Col md={3}>
+            <Sidebar />
+          </Col>
+          <Col md={6}>
+            <CardPost />
+            <CardPost />
+            <CardPost />
+            <CardPost />
+            <CardPost />
+          </Col>
+          <Col md={3}>
+            <Hashtag />
           </Col>
         </Row>
       </Container>
