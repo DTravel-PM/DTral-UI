@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { Popover, OverlayTrigger, Button, Modal } from "react-bootstrap";
 import styles from "../styles/Component.module.css";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
-export const CardPost = () => {
+interface ICardPost {
+  data: IArticle;
+}
+
+export const CardPost = ({ data }: ICardPost) => {
   const [show, setShow] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
 
@@ -39,7 +45,7 @@ export const CardPost = () => {
       <div className="card-header">
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex justify-content-between align-items-center">
-            <div className="mr-2">
+            <div className="">
               <img
                 className="rounded-circle"
                 width="45"
@@ -47,7 +53,7 @@ export const CardPost = () => {
                 alt=""
               />
             </div>
-            <div className="ml-2">
+            <div className="mx-2">
               <div className="h5 m-0">@LeeCross</div>
               <div className="h7 text-muted">Miracles Lee Cross</div>
             </div>
@@ -78,33 +84,45 @@ export const CardPost = () => {
           </div>
         </div>
       </div>
+
       <div className="card-body">
         <div className="text-muted h7 mb-2">
           {" "}
-          <i className="fa fa-clock-o"></i>10 min ago
+          <i className="fa fa-clock-o"></i>
+          {data?.uploaddate}
         </div>
         <a className="card-link" href="#">
-          <h5 className="card-title">
-            Lorem ipsum dolor sit amet, consectetur adip.
-          </h5>
+          <h5 className="card-title">{data?.title}</h5>
         </a>
 
-        <p className="card-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
-          recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor sequi
-          fuga quia quaerat cum, obcaecati hic, molestias minima iste
-          voluptates.
-        </p>
+        <p className="card-text">{data?.content}</p>
+
+        <div className="card-image" style={{ width: "80%", margin: "auto" }}>
+          {data.media && (
+            <Carousel
+              showArrows={true}
+              // onChange={onChange}
+              // onClickItem={onClickItem}
+              // onClickThumb={onClickThumb}
+            >
+              {data.media.map((item: IMedia, i: number) => {
+                return (
+                  <div key={i}>
+                    <img src={`${process.env.URL_API}${item.url}`} />
+                  </div>
+                );
+              })}
+            </Carousel>
+          )}
+        </div>
       </div>
       <div className="card-footer">
         <a href="#" className="card-link">
-          <i className="fa fa-gittip"></i> Like
+          <i className="fa fa-gittip"></i>
+          {data?.rating} rating
         </a>
         <a href="#" className="card-link">
-          <i className="fa fa-comment"></i> Comment
-        </a>
-        <a href="#" className="card-link">
-          <i className="fa fa-mail-forward"></i> Share
+          <i className="fa fa-comment"></i> {data?.view} view
         </a>
       </div>
     </div>
