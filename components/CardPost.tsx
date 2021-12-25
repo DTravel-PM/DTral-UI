@@ -5,7 +5,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 interface ICardPost {
-  data: IArticle;
+  data?: IArticle;
 }
 
 export const CardPost = ({ data }: ICardPost) => {
@@ -98,7 +98,7 @@ export const CardPost = ({ data }: ICardPost) => {
         <p className="card-text">{data?.content}</p>
 
         <div className="card-image" style={{ width: "80%", margin: "auto" }}>
-          {data.media && (
+          {data?.media && (
             <Carousel
               showArrows={true}
               // onChange={onChange}
