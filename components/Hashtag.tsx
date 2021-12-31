@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import Router from "next/router";
 
 export const Hashtag = () => {
   const list = [
@@ -14,7 +15,7 @@ export const Hashtag = () => {
   ];
 
   return (
-    <div className="card" >
+    <div className="card">
       <div className="card-body">
         <div className="h5">Top địa điểm yêu thích</div>
         <div className="h7 text-muted">Thành phố đáng chú ý:</div>
@@ -27,6 +28,9 @@ export const Hashtag = () => {
                   marginRight: "8px",
                   marginTop: "10px",
                 }}
+                onClick={() => {
+                  Router.push(`/search?text=${item}`);
+                }}
               >
                 <Button variant="outline-primary">{item}</Button>
               </div>
@@ -34,16 +38,6 @@ export const Hashtag = () => {
           })}
         </div>
       </div>
-      {/* <ul className="list-group list-group-flush">
-        <li className="list-group-item">
-          <div className="h6 text-muted">Followers</div>
-          <div className="h5">5.2342</div>
-        </li>
-        <li className="list-group-item">
-          <div className="h6 text-muted">Following</div>
-          <div className="h5">6758</div>
-        </li>
-      </ul> */}
     </div>
   );
 };
