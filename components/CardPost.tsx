@@ -91,9 +91,14 @@ export const CardPost = ({ data }: ICardPost) => {
           <i className="fa fa-clock-o"></i>
           {data?.uploaddate}
         </div>
-        <a className="card-link" href="#">
+        <b className="card-link">
           <h5 className="card-title">{data?.title}</h5>
-        </a>
+        </b>
+
+        <p className="card-text">
+          Địa điểm:{" "}
+          <a href={`/search?text=${data?.location}`}> {data?.location}</a>
+        </p>
 
         <p className="card-text">{data?.content}</p>
 
@@ -107,7 +112,7 @@ export const CardPost = ({ data }: ICardPost) => {
             >
               {data.media.map((item: IMedia, i: number) => {
                 return (
-                  <div key={i}>
+                  <div key={i} style={{ maxHeight: "400px" }}>
                     <img src={`${process.env.URL_API}${item.url}`} />
                   </div>
                 );

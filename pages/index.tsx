@@ -5,13 +5,30 @@ import { Header } from "../components/common";
 import { CardPost, Sidebar, Hashtag, CardInput } from "../components";
 import { getAllPost } from "./api/posts/[id]";
 import { useQuery } from "react-query";
+import { useEffect, useState } from "react";
+
 interface IPosts {
   children?: any;
   data?: any;
 }
 
+function reverseArray(arr: any) {
+  var newArray = [];
+  for (var i = arr.length - 1; i >= 0; i--) {
+    newArray.push(arr[i]);
+  }
+  return newArray;
+}
+
 const Home: NextPage = ({ children }: IPosts) => {
   const { data } = useQuery("all-articles", getAllPost);
+  const [newData, setNewData] = useState(data);
+
+  useEffect(() => {
+    if (data && data.length) {
+      setNewData(data);
+    }
+  }, [data]);
 
   return (
     <OnlyHeaderLayout header={<Header />}>
@@ -23,8 +40,8 @@ const Home: NextPage = ({ children }: IPosts) => {
           </Col>
           <Col md={6}>
             <CardInput />
-            {data ? (
-              data.map((item: IArticle, i: number) => {
+            {data && newData ? (
+              reverseArray(newData).map((item: IArticle, i: number) => {
                 return <CardPost data={item} key={i} />;
               })
             ) : (
