@@ -6,7 +6,6 @@ import { CardPost, Sidebar, Hashtag, CardInput } from "../components";
 import { getAllPost } from "./api/posts/[id]";
 import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
-import { ListPlan } from "../components/ListPlan";
 
 interface IPosts {
   children?: any;
