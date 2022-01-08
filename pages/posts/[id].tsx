@@ -1,8 +1,9 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import Link from "next/link";
-import { Card, Button } from "react-bootstrap";
-import { BlankLayout } from "../../layout";
+import { Row, Col, Container } from "react-bootstrap";
+import { OnlyHeaderLayout } from "../../layout";
+import { Header } from "../../components/common";
+import { Sidebar, Hashtag, CardPostDetail } from "../../components";
 interface IPosts {
   data?: any;
   children?: any;
@@ -12,41 +13,31 @@ const Posts: NextPage = ({ children, data }: IPosts) => {
   const router = useRouter();
   const { id } = router.query;
 
-  return (
-    <BlankLayout>
-      <div className="mt-8 max-w-xl mx-auto px-8">
-        <h1 className="text-center">
-          <span className="block text-xl text-gray-600 leading-tight">
-            Welcome to this {id}
-          </span>
-        </h1>
-        <div
-          className="mt-12 text-center"
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}
-        >
-          {data &&
-            data.length &&
-            data.map((item: any) => {
-              return (
-                <Card style={{ width: "18rem" }} key={item.anime_id}>
-                  <Card.Body>
-                    <Card.Img
-                      style={{ height: "300px", objectFit: "cover" }}
-                      variant="top"
-                      src={item.anime_img}
-                    />
-                    <Card.Title>{item.anime_name}</Card.Title>
+  const dataSidebar ={
+    name: 'Lee Cross',
+    description: 'Developer of web applications, JavaScript, PHP, Java, Python, Ruby\nJava, Node.js, etc.',
+    followers: 12345,
+    following: 65487,
+  }
 
-                    <Card.Link href={`/post/${item.anime_id}`}>
-                      Go to detail
-                    </Card.Link>
-                  </Card.Body>
-                </Card>
-              );
-            })}
-        </div>
-      </div>
-    </BlankLayout>
+  return (
+    <OnlyHeaderLayout header={<Header />}>
+      <Container>
+        <h3 className="mb-4">Post</h3>
+        <Row>
+          <Col md={3}>
+          <Sidebar name= {dataSidebar.name} description = {dataSidebar.description} following = {dataSidebar.following} followers = {dataSidebar.followers} />
+          </Col>
+          <Col md={6}>
+            <CardPostDetail></CardPostDetail>
+            
+          </Col>
+          <Col md={3}>
+            <Hashtag />
+          </Col>
+        </Row>
+      </Container>
+    </OnlyHeaderLayout>
   );
 };
 
