@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { Button, Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { OnlyHeaderLayout } from "../layout";
 import { Header } from "../components/common";
 import { CardPost, Sidebar, Hashtag, CardInput } from "../components";
@@ -32,13 +32,20 @@ const Home: NextPage = ({ children }: IPosts) => {
     }
   }, [data]);
 
+  const dataSidebar ={
+    name: 'Lee Cross',
+    description: 'Developer of web applications, JavaScript, PHP, Java, Python, Ruby\nJava, Node.js, etc.',
+    followers: 12345,
+    following: 65487,
+  }
+
   return (
     <OnlyHeaderLayout header={<Header />}>
       <Container>
         <h3 className="mb-4">Newsfeeds </h3>
         <Row>
           <Col md={3}>
-            <Sidebar />
+            <Sidebar name= {dataSidebar.name} description = {dataSidebar.description} following = {dataSidebar.following} followers = {dataSidebar.followers} />
           </Col>
           <Col md={6}>
             {jwt && <CardInput />}
@@ -49,6 +56,7 @@ const Home: NextPage = ({ children }: IPosts) => {
             ) : (
               <></>
             )}
+            <CardPost></CardPost>
           </Col>
           <Col md={3}>
             <Hashtag />

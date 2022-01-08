@@ -1,0 +1,82 @@
+.fb_place_block {
+  margin: auto;
+  position: relative;
+  width: 100%;
+}
+
+.fb_place_block_thumb {
+  display: block;
+  height: 315px;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+  background: #1e90ff;
+  background: -webkit-radial-gradient(bottom, #73d6f5 12%, #1e90ff);
+  background: radial-gradient(at bottom, #73d6f5 12%, #1e90ff);
+}
+
+.place_img img {
+  display: block;
+  height: 315px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+  background: #1e90ff;
+  background: -webkit-radial-gradient(bottom, #73d6f5 12%, #1e90ff);
+  background: radial-gradient(at bottom, #73d6f5 12%, #1e90ff);
+}
+
+.place_name {
+  bottom: 60px;
+  left: 20px;
+  position: absolute;
+}
+
+.place_name h2 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 30px;
+  max-width: 575px;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.fb_place_block_menu {
+  height: 44px;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #d3d6db;
+  border-radius: 0 0 3px 3px;
+}
+
+.block_menu {
+  clear: right;
+}
+
+.block_menu ul {
+  margin: 0;
+  padding: 0;
+}
+.block_menu ul li {
+  display: inline-block;
+}
+.block_menu ul li a {
+  border-right: 1px solid #e9eaed;
+  float: left;
+  font-size: 14px;
+  font-weight: bold;
+  height: 42px;
+  line-height: 3;
+  padding: 0 17px;
+  position: relative;
+  vertical-align: middle;
+  white-space: nowrap;
+  color: #4b4f56;
+  text-transform: capitalize;
+}
+.block_menu ul li:first-child a {
+  border-left: 1px solid #e9eaed;
+}
