@@ -47,6 +47,7 @@ const Home: NextPage = ({ children }: IPosts) => {
             ) : (
               <></>
             )}
+            <CardPost></CardPost>
           </Col>
           <Col md={3}>
             <Hashtag />

@@ -1,17 +1,19 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/no-html-link-for-pages */
 import React, { useState } from "react";
-import { Popover, OverlayTrigger } from "react-bootstrap";
+import { Popover, OverlayTrigger, Form, FormControl, Button } from "react-bootstrap";
 import styles from "../styles/Component.module.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Comment, CommentField } from "../components";
 
 interface ICardPost {
   data?: IArticle;
 }
 
-export const CardPost = ({ data }: ICardPost) => {
+export const CardPostDetail = ({ data }: ICardPost) => {
   const [show, setShow] = useState(false);
-  const [showOverlay, setShowOverlay] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false); 
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -123,13 +125,15 @@ export const CardPost = ({ data }: ICardPost) => {
         </div>
       </div>
       <div className="card-footer">
-        <a href="#" className="card-link">
-          <i className="fa fa-gittip"></i>
-          {data?.rating} rating
+        <a href="#" className="card-link" style={{ textDecoration: 'none' }}>
+          <i className="fa fa-gittip" ></i>
+          {data?.rating} 💙
         </a>
-        <a href="/posts/123" className="card-link">
-          <i className="fa fa-comment"></i> {data?.view} view
-        </a>
+        <Comment name = "@Đạt Nguyễn" comment = "Beautifulx1"></Comment>
+        <Comment name = "@Dương Nguyễn" comment = "Beautifulx2"></Comment>
+        <Comment name = "@Duy Trương" comment = "Beautifulx3"></Comment>
+        <Comment name = "@Minh Duy" comment = "Beautifulx4"></Comment>
+        <CommentField></CommentField>
       </div>
     </div>
   );
