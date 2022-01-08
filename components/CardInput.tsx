@@ -3,11 +3,13 @@ import { Form, Spinner } from "react-bootstrap";
 import { createPost, getAllPost } from "../pages/api/posts/[id]";
 import { useMutation, useQueryClient, useQuery } from "react-query";
 import Router from "next/router";
+import { parseCookies, destroyCookie } from "nookies";
 
 export const CardInput = () => {
   const [title, setTitle] = useState("");
   const [des, setDes] = useState("");
   const [location, setLocation] = useState("");
+  const user = parseCookies().user;
 
   const { mutate, isLoading } = useMutation(createPost, {
     onSuccess: (data) => {
@@ -24,7 +26,7 @@ export const CardInput = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    mutate({ title: title, content: des, location: location });
+    mutate({ title: title, content: des, location: location, username: user });
   };
 
   return (

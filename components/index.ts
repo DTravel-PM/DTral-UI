@@ -5,3 +5,4 @@ export * from "./CardInput";
 export * from "./CardPostDetail";
 export * from "./Comment";
 export * from "./CommentField";
+export * from "./CardLocation";

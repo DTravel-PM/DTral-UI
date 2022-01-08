@@ -1,18 +1,15 @@
 import type { NextPage } from "next";
-import { useRouter } from "next/router";
+import { server } from "../config";
+import { Button } from "react-bootstrap";
+import { useState } from "react";
+import { useQuery, QueryClient, useQueryClient } from "react-query";
+import { CardLocation } from "../components";
+import { OnlyHeaderLayout } from "../layout";
+import { Header } from "../components/common";
 import { Row, Col, Container } from "react-bootstrap";
-import { OnlyHeaderLayout } from "../../layout";
-import { Header } from "../../components/common";
-import { Sidebar, Hashtag, CardPostDetail } from "../../components";
-interface IPosts {
-  data?: any;
-  children?: any;
-}
-
-const Posts: NextPage = ({ children, data }: IPosts) => {
-  const router = useRouter();
-  const { id } = router.query;
-
+import { CardPost, Sidebar, Hashtag, CardInput } from "../components";
+import { getAllLocation } from "./api/place";
+const AllPlace: NextPage = () => {
   const dataSidebar = {
     name: "Lee Cross",
     description:
@@ -20,11 +17,12 @@ const Posts: NextPage = ({ children, data }: IPosts) => {
     followers: 12,
     following: 1,
   };
+  const { data } = useQuery(["all-location"], getAllLocation);
 
   return (
     <OnlyHeaderLayout header={<Header />}>
       <Container>
-        <h3 className="mb-4">Chi tiết bài đăng</h3>
+        <h3 className="mb-4">Tất cả địa điểm </h3>
         <Row>
           <Col md={3}>
             <Sidebar
@@ -35,7 +33,11 @@ const Posts: NextPage = ({ children, data }: IPosts) => {
             />
           </Col>
           <Col md={6}>
-            <CardPostDetail></CardPostDetail>
+            {data &&
+              data.length &&
+              data.map((item: any, i: any) => {
+                return <CardLocation key={i} data={item} />;
+              })}
           </Col>
           <Col md={3}>
             <Hashtag />
@@ -46,13 +48,4 @@ const Posts: NextPage = ({ children, data }: IPosts) => {
   );
 };
 
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await fetch(`https://anime-facts-rest-api.herokuapp.com/api/v1`);
-  const data = await res.json();
-
-  // Pass data to the page via props
-  return { props: { data: data.data } };
-}
-
-export default Posts;
+export default AllPlace;
