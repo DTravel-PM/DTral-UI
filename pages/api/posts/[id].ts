@@ -23,7 +23,7 @@ export const searchPost = async (params: any) => {
 };
 
 export const createPost = async (params: any) => {
-  const { title, content, location } = params;
+  const { title, content, location, username } = params;
   console.log("haha", title, content, location);
 
   const data = await fetch(`${URL_API}/articles`, {
@@ -34,6 +34,7 @@ export const createPost = async (params: any) => {
       content: content,
       location: location,
       uploaddate: new Date(),
+      username: username,
     }),
   });
 

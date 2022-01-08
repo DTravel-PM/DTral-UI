@@ -6,6 +6,7 @@ import { CardPost, Sidebar, Hashtag, CardInput } from "../components";
 import { getAllPost } from "./api/posts/[id]";
 import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
+import { parseCookies, destroyCookie } from "nookies";
 
 interface IPosts {
   children?: any;
@@ -23,6 +24,7 @@ function reverseArray(arr: any) {
 const Home: NextPage = ({ children }: IPosts) => {
   const { data } = useQuery("all-articles", getAllPost);
   const [newData, setNewData] = useState(data);
+  const jwt = parseCookies().jwt;
 
   useEffect(() => {
     if (data && data.length) {
@@ -39,7 +41,7 @@ const Home: NextPage = ({ children }: IPosts) => {
             <Sidebar />
           </Col>
           <Col md={6}>
-            <CardInput />
+            {jwt && <CardInput />}
             {data && newData ? (
               reverseArray(newData).map((item: IArticle, i: number) => {
                 return <CardPost data={item} key={i} />;

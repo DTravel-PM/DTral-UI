@@ -5,6 +5,8 @@ import styles from "../styles/Component.module.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
+type IArticle = any;
+type IMedia = any;
 interface ICardPost {
   data?: IArticle;
 }
@@ -55,8 +57,8 @@ export const CardPost = ({ data }: ICardPost) => {
               />
             </div>
             <div className="mx-2">
-              <div className="h5 m-0">@LeeCross</div>
-              <div className="h7 text-muted">Miracles Lee Cross</div>
+              <div className="h5 m-0"> {data?.username}</div>
+              {/* <div className="h7 text-muted">Miracles Lee Cross</div> */}
             </div>
           </div>
           <div>

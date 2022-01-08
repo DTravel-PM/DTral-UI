@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Navbar,
   Container,
@@ -13,8 +13,12 @@ import { BsBookmarkHeart } from "react-icons/bs";
 import { FcPlanner } from "react-icons/fc";
 import styles from "../../styles/Layout.module.css";
 import Link from "next/link";
+import { parseCookies, destroyCookie } from "nookies";
 
 export const Header = () => {
+  const jwt = parseCookies().jwt;
+  const user = parseCookies().user;
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
@@ -26,7 +30,8 @@ export const Header = () => {
   };
 
   const handleLogout = () => {
-    console.log("haha");
+    destroyCookie(null, "jwt");
+    Router.push("/login");
   };
 
   return (
@@ -51,7 +56,11 @@ export const Header = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
-            <Form className="d-flex" onSubmit={handleSubmit}>
+            <Form
+              className="d-flex"
+              onSubmit={handleSubmit}
+              style={{ marginRight: "auto" }}
+            >
               <FormControl
                 type="search"
                 placeholder="Nhập từ khóa tìm kiếm"
@@ -68,46 +77,48 @@ export const Header = () => {
                 Tìm kiếm
               </Button>
             </Form>
-            <Nav
-              className=" my-2 my-lg-0"
-              style={{ maxHeight: "100px", marginLeft: "auto" }}
-              navbarScroll
-            >
-              <Nav.Link href="/my-list" style={{ margin: "0px 8px" }}>
-                <BsBookmarkHeart size={22} color="red" />
-              </Nav.Link>
-              <Nav.Link href="/my-plan" style={{ margin: "0px 8px" }}>
-                <FcPlanner size={25} color="green" />
-              </Nav.Link>
-              <NavDropdown
-                style={{ margin: "0px 8px" }}
-                title="Đạt Nguyễn"
-                id="navbarScrollingDropdown"
+            {jwt ? (
+              <Nav
+                className=" my-2 my-lg-0"
+                style={{ maxHeight: "100px", marginLeft: "auto" }}
+                navbarScroll
               >
-                <NavDropdown.Item href="/profile">
-                  Trang cá nhân
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/edit-profile">
-                  Thông tin cá nhân
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/my-address">
-                  Địa điểm của tôi
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item onClick={handleLogout}>
-                  Đăng xuất
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-
-            <Link href="/login">
-              <Button
-                variant="danger"
-                style={{ marginLeft: "20px", width: "120px" }}
-              >
-                Đăng nhập
-              </Button>
-            </Link>
+                <Nav.Link href="/my-list" style={{ margin: "0px 8px" }}>
+                  <BsBookmarkHeart size={22} color="red" />
+                </Nav.Link>
+                <Nav.Link href="/my-plan" style={{ margin: "0px 8px" }}>
+                  <FcPlanner size={25} color="green" />
+                </Nav.Link>
+                <NavDropdown
+                  style={{ margin: "0px 8px" }}
+                  title={user}
+                  id="navbarScrollingDropdown"
+                >
+                  <NavDropdown.Item href="/profile">
+                    Trang cá nhân
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="/edit-profile">
+                    Thông tin cá nhân
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="/my-address">
+                    Địa điểm của tôi
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={handleLogout}>
+                    Đăng xuất
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
+            ) : (
+              <Link href="/login">
+                <Button
+                  variant="danger"
+                  style={{ marginLeft: "20px", width: "120px" }}
+                >
+                  Đăng nhập
+                </Button>
+              </Link>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>

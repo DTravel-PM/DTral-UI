@@ -5,6 +5,7 @@ import { AiFillTwitterCircle, AiFillLinkedin } from "react-icons/ai";
 import Router from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { setCookie } from "nookies";
 
 const Login: NextPage = () => {
   const [username, setUsername] = useState("");
@@ -34,6 +35,15 @@ const Login: NextPage = () => {
     if (loginResponse && loginResponse.user && loginResponse.jwt) {
       localStorage.setItem("user", loginResponse.user);
       localStorage.setItem("jwt", loginResponse.jwt);
+      setCookie(null, "jwt", loginResponse.jwt, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: "/",
+      });
+
+      setCookie(null, "user", loginResponse.user.username, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: "/",
+      });
 
       Router.push("/");
     } else notify();
