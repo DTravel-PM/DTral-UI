@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import React, { useState } from "react";
-import { Popover, OverlayTrigger, Button, Modal } from "react-bootstrap";
+import { Popover, OverlayTrigger } from "react-bootstrap";
 import styles from "../styles/Component.module.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
