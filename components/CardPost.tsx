@@ -57,7 +57,7 @@ export const CardPost = ({ data }: ICardPost) => {
               />
             </div>
             <div className="mx-2">
-              <div className="h5 m-0"> {data?.username}</div>
+              <div className="h5 m-0"> {data?.username || "Username"}</div>
               {/* <div className="h7 text-muted">Miracles Lee Cross</div> */}
             </div>
           </div>
@@ -92,7 +92,7 @@ export const CardPost = ({ data }: ICardPost) => {
         <div className="text-muted h7 mb-2">
           {" "}
           <i className="fa fa-clock-o"></i>
-          {data?.uploaddate}
+          {data?.uploaddate || "01/01/2022"}
         </div>
         <b className="card-link">
           <h5 className="card-title">{data?.title}</h5>
@@ -100,10 +100,16 @@ export const CardPost = ({ data }: ICardPost) => {
 
         <p className="card-text">
           Địa điểm:{" "}
-          <a href={`/search?text=${data?.location}`}> {data?.location}</a>
+          <a href={`/search?text=${data?.location}`}>
+            {" "}
+            {data?.location || "TP HCM"}
+          </a>
         </p>
 
-        <p className="card-text">{data?.content}</p>
+        <p className="card-text">
+          {data?.content ||
+            "Trong 10 kỷ lục châu Á được công nhận có đến 5 kỷ lục gắn với tôn giáo và 3 kỷ lục dành cho các danh lam thắng cảnh tại Việt Nam. Tất cả các kỷ lục này đều có giá trị lịch sử, "}
+        </p>
 
         <div className="card-image" style={{ width: "80%", margin: "auto" }}>
           {data?.media && (
@@ -127,10 +133,10 @@ export const CardPost = ({ data }: ICardPost) => {
       <div className="card-footer">
         <a href="#" className="card-link">
           <i className="fa fa-gittip"></i>
-          {data?.rating} rating
+          {data?.rating || 0} rating
         </a>
         <a href="/posts/123" className="card-link">
-          <i className="fa fa-comment"></i> {data?.view} view
+          <i className="fa fa-comment"></i> {data?.view || 0} view
         </a>
       </div>
     </div>

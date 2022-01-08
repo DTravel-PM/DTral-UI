@@ -38,6 +38,12 @@ export const Hashtag = () => {
           })}
         </div>
       </div>
+      <a
+        style={{ color: "black", textAlign: "center", marginBottom: "20px" }}
+        href="/all-place"
+      >
+        Tất cả địa điểm
+      </a>
     </div>
   );
 };

@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import Head from "next/head";
 import { parseCookies } from "nookies";
 import Router from "next/router";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 const queryClient = new QueryClient();
 
@@ -15,7 +17,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>DTravel website</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Component {...pageProps} />
+      <DndProvider backend={HTML5Backend}>
+        {" "}
+        <Component {...pageProps} />
+      </DndProvider>
     </QueryClientProvider>
   );
 }
@@ -38,7 +43,11 @@ MyApp.getInitialProps = async ({ Component, ctx }: any) => {
   }
 
   if (!jwt) {
-    if (ctx.pathname === "/profile") {
+    if (
+      ctx.pathname === "/profile" ||
+      ctx.pathname === "/edit-profile" ||
+      ctx.pathname === "/my-plan"
+    ) {
       redirectUser(ctx, "/login");
     }
   }
