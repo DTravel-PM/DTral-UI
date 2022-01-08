@@ -21,6 +21,7 @@
     "react-icons": "^4.3.1",
     "react-query": "^3.32.1",
     "react-responsive-carousel": "^3.2.22",
+    "react-toastify": "^8.1.0",
     "sass": "^1.43.4"
   },
   "devDependencies": {
