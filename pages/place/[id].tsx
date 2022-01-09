@@ -13,13 +13,7 @@ import { useRouter } from "next/router";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 const Place: NextPage = () => {
-  const dataSidebar = {
-    name: "Pao's Sapa Leisure Hotel",
-    description:
-      "Nestled in a favourable hillside position, overlooking the spectacular view of majestic mountains, moss-green rice terrace plots and the poetic Muong Hoa valley, Pao's Sapa Leisure Hotel is the most luxurious five-star hotel in Sapa town. Owned and operated by CTX Holdings, Pao's Sapa Leisure Hotel offers 223 rooms featuring the cultural identity of Sapa, subtly blended with high-class rooms and impeccable facilities. Possessing charming curves in harmony with its natural surroundings, Pao's Sapa Leisure Hotel is a fabulous destination for a visit that will awaken your senses.",
-    followers: 12345,
-    following: 65487,
-  };
+
   const router = useRouter();
 
   const { id } = router.query;

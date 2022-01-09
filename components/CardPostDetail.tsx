@@ -12,7 +12,7 @@ interface ICardPost {
 export const CardPostDetail = ({ data }: ICardPost) => {
   const [show, setShow] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false); 
-
+  const [rating, setRating] = useState(0);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -20,7 +20,10 @@ export const CardPostDetail = ({ data }: ICardPost) => {
     setShowOverlay(false);
     handleShow();
   };
-
+  const onPressRating = (rate: any) =>{
+    if(rate==0) setRating(1);
+    else setRating(0);
+  }
   const popover = (
     <Popover
       id="popover-basic"
@@ -55,8 +58,7 @@ export const CardPostDetail = ({ data }: ICardPost) => {
               />
             </div>
             <div className="mx-2">
-              <div className="h5 m-0">@LeeCross</div>
-              <div className="h7 text-muted">Miracles Lee Cross</div>
+            <div className="h5 m-0"> {data?.username || "Dương Nguyễn"}</div>
             </div>
           </div>
           <div>
@@ -90,7 +92,7 @@ export const CardPostDetail = ({ data }: ICardPost) => {
         <div className="text-muted h7 mb-2">
           {" "}
           <i className="fa fa-clock-o"></i>
-          {data?.uploaddate}
+          {data?.uploaddate || "01/01/2022"}
         </div>
         <b className="card-link">
           <h5 className="card-title">{data?.title}</h5>
@@ -98,10 +100,16 @@ export const CardPostDetail = ({ data }: ICardPost) => {
 
         <p className="card-text">
           Địa điểm:{" "}
-          <a href={`/search?text=${data?.location}`}> {data?.location}</a>
+          <a href={`/search?text=${data?.location}`}>
+            {" "}
+            {data?.location || "TP HCM"}
+          </a>
         </p>
 
-        <p className="card-text">{data?.content}</p>
+        <p className="card-text">
+          {data?.content ||
+            "Trong 10 kỷ lục châu Á được công nhận có đến 5 kỷ lục gắn với tôn giáo và 3 kỷ lục dành cho các danh lam thắng cảnh tại Việt Nam. Tất cả các kỷ lục này đều có giá trị lịch sử"}
+        </p>
 
         <div className="card-image" style={{ width: "80%", margin: "auto" }}>
           {data?.media && (
@@ -123,9 +131,9 @@ export const CardPostDetail = ({ data }: ICardPost) => {
         </div>
       </div>
       <div className="card-footer">
-        <a href="#" className="card-link" style={{ textDecoration: 'none' }}>
+        <a className="card-link" onClick={()=>onPressRating(rating)} style={{ textDecoration: 'none' }}>
           <i className="fa fa-gittip" ></i>
-          {data?.rating} 💙
+          {(data?.rating || 0)+ rating} Rating
         </a>
         <Comment name = "@Đạt Nguyễn" comment = "Beautifulx1"></Comment>
         <Comment name = "@Dương Nguyễn" comment = "Beautifulx2"></Comment>

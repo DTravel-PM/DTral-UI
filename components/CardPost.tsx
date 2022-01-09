@@ -14,10 +14,14 @@ interface ICardPost {
 export const CardPost = ({ data }: ICardPost) => {
   const [show, setShow] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
-
+  const [rating, setRating] = useState(0);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const onPressRating = (rate: any) =>{
+    if(rate==0) setRating(1);
+    else setRating(0);
+  }
   const handleClickItem = () => {
     setShowOverlay(false);
     handleShow();
@@ -57,7 +61,7 @@ export const CardPost = ({ data }: ICardPost) => {
               />
             </div>
             <div className="mx-2">
-              <div className="h5 m-0"> {data?.username || "Username"}</div>
+              <div className="h5 m-0"> {data?.username || "Dương Nguyễn"}</div>
               {/* <div className="h7 text-muted">Miracles Lee Cross</div> */}
             </div>
           </div>
@@ -131,11 +135,11 @@ export const CardPost = ({ data }: ICardPost) => {
         </div>
       </div>
       <div className="card-footer">
-        <a href="#" className="card-link">
+      <a className="card-link" onClick={()=>onPressRating(rating)} style={{ textDecoration: 'none' }}>
           <i className="fa fa-gittip"></i>
-          {data?.rating || 0} rating
+          {(data?.rating || 0)+ rating} Rating
         </a>
-        <a href="/posts/123" className="card-link">
+        <a href="/posts/123" className="card-link" style={{ textDecoration: 'none' }}>
           <i className="fa fa-comment"></i> {data?.view || 0} view
         </a>
       </div>
