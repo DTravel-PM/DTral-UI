@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import { MdFacebook } from "react-icons/md";
 import { AiFillTwitterCircle, AiFillLinkedin } from "react-icons/ai";
 
-const Login: NextPage = () => {
+const Register: NextPage = () => {
   return (
     <section className="vh-100 d-flex center">
       <div className="container-fluid h-custom">
@@ -44,13 +44,25 @@ const Login: NextPage = () => {
               <div className="divider d-flex align-items-center my-4">
                 <p className="text-center fw-bold mx-3 mb-0">Or</p>
               </div>
+              <div className="form-outline mb-4">
+                <input
+                  type="email"
+                  id="form3Example3"
+                  className="form-control form-control-lg"
+                  placeholder="Enter user name"
+                />
+                <label className="form-label" htmlFor="form3Example3">
+                  User name
+                </label>
+              </div>
+              
 
               <div className="form-outline mb-4">
                 <input
                   type="email"
                   id="form3Example3"
                   className="form-control form-control-lg"
-                  placeholder="Enter a valid email address"
+                  placeholder="Enter email"
                 />
                 <label className="form-label" htmlFor="form3Example3">
                   Email address
@@ -69,6 +81,18 @@ const Login: NextPage = () => {
                 </label>
               </div>
 
+              <div className="form-outline mb-3">
+                <input
+                  type="password"
+                  id="form3Example4"
+                  className="form-control form-control-lg"
+                  placeholder="Enter confirm password"
+                />
+                <label className="form-label" htmlFor="form3Example4">
+                  Confirm Password
+                </label>
+              </div>
+
               <div className="d-flex justify-content-between align-items-center">
                 <div className="form-check mb-0">
                   <input
@@ -78,22 +102,19 @@ const Login: NextPage = () => {
                     id="form2Example3"
                   />
                   <label className="form-check-label" htmlFor="form2Example3">
-                    Remember me
+                    Agree Term and Policy
                   </label>
                 </div>
-                <a href="#!" className="text-body">
-                  Forgot password?
-                </a>
               </div>
 
               <div className="text-center text-lg-start mt-4 pt-2">
                 <button type="button" className="btn btn-primary btn-lg">
-                  Login
+                  Sign Up
                 </button>
                 <p className="small fw-bold mt-2 pt-1 mb-0">
-                  Don't have an account?{" "}
-                  <a href="/register" className="link-danger">
-                    Register
+                  Already have an account?{" "}
+                  <a href="/login" className="link-danger">
+                    Login
                   </a>
                 </p>
               </div>
@@ -105,4 +126,4 @@ const Login: NextPage = () => {
   );
 };
 
-export default Login;
+export default Register;
